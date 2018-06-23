@@ -46,6 +46,10 @@ My weapon of choice for my deployment today is the Azure Web App. We have [first
 
 As I mentioned earlier, I am going with a Testing and Production environment, so I've create two Azure Web App targets, one in each. You could also go for a blue / green approach, using an [Azure Powershell Script](https://octopus.com/docs/deployment-examples/azure-deployments/deploying-a-package-to-an-azure-web-app/using-deployment-slots-with-azure-web-apps) to swap deployment slots if thats your thing.
 
+Here is how they look on my Octopus:
+
+![Octopus Deploy's Infrastructure page showing Azure Web Apps](pipelines-for-od-and-vsts/blogimage-azure-web-apps.png)
+
 ### Lifecycles
 
 Once we've deployed, my delivery pipeline is a simple two phase deployment: 
@@ -57,6 +61,7 @@ When we create a life cycle we get the option to deploy automatically, and we ca
 ![Adding an automatic deployment to a lifecycle](pipelines-for-od-and-vsts/blogimage-automatic-deployment-to-test.png)
 
 Once configured the life cycle looks like this
+
 ![Octopus Deploy's lifecycle phase visualization](pipelines-for-od-and-vsts/blogimage-lifecycle-phases.png)
 
 ## VSTS YAML Basics
@@ -83,13 +88,6 @@ We now have to empty build definitions!
 ![VSTS Build Definitions page showing two build definitions](pipelines-for-od-and-vsts/blogimage-vsts-final.png)
 
 The VSTS team have created some [getting started guidance](https://docs.microsoft.com/en-us/vsts/build-release/actions/build-yaml?view=vsts#get-started), if you want to learn more about this process.
-
-## Deployment targets
-
-I'm going to need a deployment target, so for this demo I chose Azure Web Apps, and [Octopus Deploy's first class support](https://octopus.com/docs/infrastructure/azure/web-app-targets) for Azure [Web Apps](https://azure.microsoft.com/en-us/services/app-service/web/)
-
-Here is how they look on my Octopus
-![Octopus Deploy's Infrastructure page showing Azure Web Apps](pipelines-for-od-and-vsts/blogimage-azure-web-apps.png)
 
 ## Defining our builds
 
