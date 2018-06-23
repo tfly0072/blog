@@ -54,7 +54,7 @@ Once we've deployed, my delivery pipeline is a simple two phase deployment: 
 
 When we create a life cycle we get the option to deploy automatically, and we can set this *per phase* which is awesome for reducing human bottle necks while retaining control where it matters.
 
-![Adding an automatic deployment to a lifecycle](pipelines-for-od-and-vsts\blogimage-automatic-deployment-to-test.png)
+![Adding an automatic deployment to a lifecycle](pipelines-for-od-and-vsts/blogimage-automatic-deployment-to-test.png)
 
 Once configured the life cycle looks like this
 ![Octopus Deploy's lifecycle phase visualization](pipelines-for-od-and-vsts/blogimage-lifecycle-phases.png)
