@@ -44,7 +44,7 @@ All in all, this means I'll want two build definitions - one for CI duties, 
 
 My weapon of choice for my deployment today is the Azure Web App. We have [first class support](https://octopus.com/docs/deployment-examples/azure-deployments/deploying-a-package-to-an-azure-web-app) for these and they are nice and easy to setup
 
-As I mentioned earlier, I am going with a Testing and Production environment, so I've create two Azure Web App targets, one in each. You could also go for a blue / green approach, using an [Azure Powershell Script](https://octopus.com/docs/deployment-examples/azure-deployments/deploying-a-package-to-an-azure-web-app/using-deployment-slots-with-azure-web-apps) to swap deployment slots if thats your thing.
+As I mentioned earlier, I am going with a Testing and Production environment, so I've create two Azure Web App targets, one in each. You could also go for a blue / green approach, using a [Azure Powershell Script Step](https://octopus.com/docs/deployment-examples/azure-deployments/deploying-a-package-to-an-azure-web-app/using-deployment-slots-with-azure-web-apps) to swap deployment slots if thats your thing.
 
 Here is how they look on my Octopus:
 
