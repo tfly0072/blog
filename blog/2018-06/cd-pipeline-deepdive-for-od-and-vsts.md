@@ -26,7 +26,7 @@ First up, lets plan out a simple CD pipeline. Some typical goals for such a proc
 
 I want to build a release package and deploy via my Octopus server whenever I commit to master (this would include PR's, merges, rebases etc). 
 
-I also this to occur auto-magically against my test environment, but leave me to manually promote my deployemnt to production when I choose to.
+I also want this to occur auto-magically against my test environment, but leave me to manually promote my deployment to production when I choose to.
 
 For any other branch, I want a continuous delivery build to trigger, to run tests and ultimately enable other quality gates, like [sonarqube](https://medium.com/r/?url=https%3A%2F%2Fwww.sonarqube.org%2F)
 
@@ -34,9 +34,8 @@ In terms of deployment targets, let's go with two Azure Web Apps, one for testin
 
 ![Placeholder for a visio diagram or some such](pipelines-for-od-and-vsts/blogimage-cd-plan-placeholder.png)
 
-I don't claim credit for this simple plan - it is 'github flow' and again, it is probably good enough for my simple project. 
+I don't claim credit for this simple plan - it is just good old 'github flow' and  is probably good enough for my simple project. 
 
-Another goal I have is to use semantic versions on my packages - ideally driven from my branch names.
 All in all, this means I'll want two build definitions - one for CI duties, and one for Releasing.
 
 ## Octopus Setup
@@ -45,7 +44,7 @@ All in all, this means I'll want two build definitions - one for CI duties, 
 
 My weapon of choice for my deployment today is the Azure Web App. We have [first class support](https://octopus.com/docs/deployment-examples/azure-deployments/deploying-a-package-to-an-azure-web-app) for these and they are nice and easy to setup
 
-As I mentioned earlier, I am going with a Testing and Production environment, so I've create two Azure Web App targets, one in each. You could also go for a blue / green appraoch, using an [Azure Powershell Script](https://octopus.com/docs/deployment-examples/azure-deployments/deploying-a-package-to-an-azure-web-app/using-deployment-slots-with-azure-web-apps) to swap deployment slots if thats your thing.
+As I mentioned earlier, I am going with a Testing and Production environment, so I've create two Azure Web App targets, one in each. You could also go for a blue / green approach, using an [Azure Powershell Script](https://octopus.com/docs/deployment-examples/azure-deployments/deploying-a-package-to-an-azure-web-app/using-deployment-slots-with-azure-web-apps) to swap deployment slots if thats your thing.
 
 ### Lifecycles
 
@@ -53,7 +52,7 @@ Once we've deployed, my delivery pipeline is a simple two phase deployment: 
 - Automatically deploy to Test. 
 - Manual promotion to Production.
 
-When we create a lifecycle we get the option to deploy automatically, and we can set this *per phase* which is awesome for reducing human bottle necks while retaining control where it matters.
+When we create a life cycle we get the option to deploy automatically, and we can set this *per phase* which is awesome for reducing human bottle necks while retaining control where it matters.
 
 ![Adding an automatic deployment to a lifecycle](pipelines-for-od-and-vsts\blogimage-automatic-deployment-to-test.png)
 
@@ -62,7 +61,7 @@ Once configured the life cycle looks like this
 
 ## VSTS YAML Basics
 
-To build a suitable build chain declaritively, we need to push a pair of definition files up to VSTS first. 
+To build a suitable build chain declaratively, we need to push a pair of definition files up to VSTS first. 
 
 - .vsts-ci.yml
 - .vsts-release.yml
@@ -192,7 +191,7 @@ Looks nice and simple to me! Here's the CI build...
 
 ## Release Build Steps
 
-Now onto the fun stuff! CI builds are all well and goodm but we want to ship things.
+Now onto the fun stuff! CI builds are all well and good but we want to ship things.
 
  For my release builds, I want to see semantic versions and a nuget package that I can send along to my Octopus Deploy instance
 
