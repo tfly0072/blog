@@ -3,7 +3,7 @@ title: CD pipeline deep dive for Octopus and VSTS
 description: By using the Octopus CLI and Team Systems new YAML build definitions, we can achieve a slick CD pipeline!
 author: jim.burger@octopus.com
 visibility: private
-published: 2018-06-23
+published: 2019-06-23
 metaImage: metaimage-that-doesnt-exist-yet.png
 bannerImage: image-that-doesnt-exist-yet.png
 tags:
