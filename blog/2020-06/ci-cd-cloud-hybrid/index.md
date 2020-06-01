@@ -15,7 +15,7 @@ It is becomming more common that companies are offloading things like email mana
 ## Transitioning from on-premise to cloud
 An increasingly common scenario that we have encountered are customers that have been using the Self-Hosted version of Octopus Deploy, but are transitioning from their own infrastructure to using cloud offerings.
 
-### Cloud build, on-premise Octopus
+### Cloud build to on-premise Octopus
 One of the scenarios that we have been presented with are customers that have transitioned thier build servers to cloud, but their Octopus Deploy server is still on their local infrastructure.  The challenge they face is how to get the cloud-based build server to push packages to their local instance of Octopus.  The answer is the most annoying answer that a techie can give, "It depends."
 
 #### Local build agents
@@ -41,7 +41,7 @@ Some of the available cloud build servers are purely cloud with no ability to of
 
 Without the ability to run local agents, the only option available to continue to allow the build server to push to a local instace of Octopus is opening the firewall.  To reduce your attack surface, it is advisable to consult the documentation of the cloud provider and only add the build agent IP address range.
 
-### Local build, cloud Octopus
+### Local build to Octopus Cloud
 Pushing to a cloud Octopus instance from a local build server is usually pretty painless, however, we have had some customers encounter some difficulties
 
 - Restricted egress
@@ -53,5 +53,10 @@ There are a number of reasons as to why an organization might restrict external 
 #### Proxy servers
 To monitor traffic coming in and out, many organizations implement a proxy server.  Proxy server assignment is often done by Group Policy Objects (GPO) so it's done automatically when a user signs into a machine.  This can often trip people up in that the user account the build agent is using may not be part of the GPO and therefor doesn't get the proxy server added.  
 
+### Cloud hosted build VM to on-premise Octopus
+In most respects, the issues and solutions to having a build server on a hosted VM are going to be similar to `Cloud build to on-premise Octopus`, however, there is one additional option.
 
+#### Site to Site VPN
+For the big hosting providers like Microsoft Azure or Amazon AWS, you have the ability to bridge your on-premise network with your cloud network.  This can be accomplished by using a Site to Site Virtual Private Network (VPN) connection.  Using a Site to Site VPN connection, resources on your cloud network are able to speak to your local network as if they were in the same datacenter.  In these cases, pushing packages from a build server hosted on your cloud network is no different than if it was on-premise.
 
+### 
