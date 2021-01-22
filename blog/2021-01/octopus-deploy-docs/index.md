@@ -5,19 +5,16 @@ description: Octopus hosts its documentation on GitHub. In this post we'll walk 
 author: mark.harrison@octopus.com
 visibility: private
 published: 2099-01-01
-metaImage: octopus-docs-curtain.png
-bannerImage: octopus-docs-curtain.png
+metaImage: blogimage-octopus-documentation-a-peek-under-the-hood-2021.png
+bannerImage: blogimage-octopus-documentation-a-peek-under-the-hood-2021.png
 tags:
  - DevOps
  - Product
 ---
 
-![Octopus Deploy docs](octopus-docs-curtain.png)
+![Octopus Deploy docs](blogimage-octopus-documentation-a-peek-under-the-hood-2021.png)
 
-
-<h2>In this post</h2>
-
-!toc
+Octopus has had it's documentation on [octopus.com/docs](https://octopus.com/docs) since [we had to move it in a hurry](https://octopus.com/blog/new-home-for-documentation) way back in 2017.
 
 TBD
 
