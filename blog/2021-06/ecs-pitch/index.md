@@ -25,6 +25,7 @@ We are proposing a new step in Octopus that allows ECS task definitions to be de
 This step streamlines the process of creating new task definition revisions by allowing image versions, which are the values most likely to change with each deployment, to be selected at deployment time. We think this will appeal to anyone who has had to dig through the new task revision dialog in ECS each time a Docker image tag has to be updated.
 
 ![](https://via.placeholder.com/500x300 "width=500")
+
 *A mockup of the ECS task step.*
 
 ## Streamlined service deployments
@@ -34,11 +35,13 @@ Just as updating a task definition as part of a CD workflow means selecting new 
 To support this workflow we're proposing a new feed in Octopus that exposes task definitions as "packages" and task revisions as "versions".
 
 ![](https://via.placeholder.com/500x300 "width=500")
+
 *A mockup of the ECS task definition feed.*
 
 The ECS service step is then configured to consume task definitions from the new feed. This means the step defers the selection of a task definition until deployment time.
 
 ![](https://via.placeholder.com/500x300 "width=500")
+
 *A mockup of the ECS service step.*
 
 The best thing about exposing task definition revisions as versions is that we get to treat them as single digit version strings. This means existing functionality like channel rules can be used to customize ECS service deployments.
@@ -48,6 +51,7 @@ The best thing about exposing task definition revisions as versions is that we g
 ECS has no native concept of environments. However, with the proposed new Octopus ECS target, progressing deployments from the development environment, through test, and then to production becomes simple.
 
 ![](https://via.placeholder.com/500x300 "width=500")
+
 *A mockup of the ECS target.*
 
 This target will support you whether you choose to model environments within a single cluster using a service naming convention, or via separate clusters, regions, or accounts.
@@ -67,4 +71,28 @@ Canary deployments with ECS
 ](https://octopus.com/blog/ecs-canary-deployments).
 
 ![](https://via.placeholder.com/500x300 "width=500")
+
 *A mockup of the ECS service deployment style.*
+
+## Deployment verification
+
+One of the advantages that task sets bring is the ability to deploy a new task definition in the background, away from any public traffic, but still accessible from a URL known only to you. With a specially configured listener rules, the newly deployed stack can be made available for testing, either manually or with automated tools, before the decision to promote traffic to it is made.
+
+When deploying an ECS task with the Octopus deployment type, a number of listener rules can be defined to expose the existing and new stacks. By defining a special header or query string parameter, these rules can expose the new deployment only to your testers, keeping public traffic away until you are happy with the test results.
+
+![](https://via.placeholder.com/500x300 "width=500")
+
+*A mockup of the ECS service deployment style.*
+
+## Conclusion
+
+At Octopus we care deeply about enabling world class deployments, and in the post we saw how the proposed new ECS step:
+
+* Makes continuous delivery easy by exposing Docker image tags and task definition revisions at deployment time.
+* Allowing deployments to be promoted through multiple environments through the use of targets.
+* Put control back in your hands with a custom deployment type taking advantage of task sets.
+* Expose opportunities for testing deployments through custom network rules.
+
+However, these are just proposals and subject to change, so if you have any feedback or comments, please feel free to reach out in the comments section below, or via twitter at @mjcasperson.
+
+Happy deployments!
