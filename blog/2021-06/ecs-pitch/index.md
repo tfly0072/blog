@@ -25,4 +25,46 @@ We are proposing a new step in Octopus that allows ECS task definitions to be de
 This step streamlines the process of creating new task definition revisions by allowing image versions, which are the values most likely to change with each deployment, to be selected at deployment time. We think this will appeal to anyone who has had to dig through the new task revision dialog in ECS each time a Docker image tag has to be updated.
 
 ![](https://via.placeholder.com/500x300 "width=500")
-* A mock up of the ECS task step. *
+*A mockup of the ECS task step.*
+
+## Streamlined service deployments
+
+Just as updating a task definition as part of a CD workflow means selecting new Docker image versions, deploying new ECS services means selecting new task definition revisions.
+
+To support this workflow we're proposing a new feed in Octopus that exposes task definitions as "packages" and task revisions as "versions".
+
+![](https://via.placeholder.com/500x300 "width=500")
+*A mockup of the ECS task definition feed.*
+
+The ECS service step is then configured to consume task definitions from the new feed. This means the step defers the selection of a task definition until deployment time.
+
+![](https://via.placeholder.com/500x300 "width=500")
+*A mockup of the ECS service step.*
+
+The best thing about exposing task definition revisions as versions is that we get to treat them as single digit version strings. This means existing functionality like channel rules can be used to customize ECS service deployments.
+
+## Environment management
+
+ECS has no native concept of environments. However, with the proposed new Octopus ECS target, progressing deployments from the development environment, through test, and then to production becomes simple.
+
+![](https://via.placeholder.com/500x300 "width=500")
+*A mockup of the ECS target.*
+
+This target will support you whether you choose to model environments within a single cluster using a service naming convention, or via separate clusters, regions, or accounts.
+
+Targets can also take advantage of the existing security layers in Octopus, providing rules to limit access to targets based on the environment they belong to.
+
+## Interactive blue/green and canary deployments
+
+[ECS has native support for blue/green and canary deployments via CodeDeploy](https://docs.aws.amazon.com/AmazonECS/latest/userguide/deployment-type-bluegreen.html), providing a convenient tick-box solution for these advanced deployment patterns. However, the CodeDeploy deployment configurations only provide the ability to shift a fixed amount of traffic in fixed intervals. This model of deployment forces you [to actively stop a deployment](https://docs.amazonaws.cn/en_us/codedeploy/latest/userguide/deployments-stop.html) rather than permit it to progress.
+
+The manual intervention step in Octopus is a simple but effective workflow feature that puts control of a deployment in your hands. This is especially important when performing a canary deployment, as the decision to increase the amount of traffic to a new deployment may require the kind of discussions that can not be automated. For example, you may need to  talk to your support team to verify the canary deployment hasn't introduced any unwanted problems.
+
+To give you back complete control of your ECS deployments, the service step proposes an Octopus managed deployment type. When a deployment is managed by Octopus, the resulting ECS service will make use of task sets to allow traffic to be gradually, and if needed manually, transitioned to the new deployment.
+
+You can find more information on externally managed ECS deployments in our blog post [
+Canary deployments with ECS
+](https://octopus.com/blog/ecs-canary-deployments).
+
+![](https://via.placeholder.com/500x300 "width=500")
+*A mockup of the ECS service deployment style.*
